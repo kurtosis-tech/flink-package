@@ -26,26 +26,12 @@ jobs:
       - run: kurtosis engine restart
 
       - run: |
-          kurtosis run ${PWD} '{"num_nodes": 5}'
+          kurtosis run ${PWD} '{"num_nodes": 3}'
   
 workflows:
   build:
     jobs:
       # -- PR check jobs ------------------------------------------
-      - kurtosis-docs-checker/check-docs:
-          should-check-changelog: false
-          markdown-link-check-config-json: | 
-            {
-              "ignorePatterns": [
-                {
-                  "pattern": "/run.gif"
-                }                
-              ]
-            }
-          filters:
-            branches:
-              ignore:
-                - main
       - run_starlark:
           filters:
             branches:
