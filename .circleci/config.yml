@@ -1,0 +1,39 @@
+version: 2.1
+
+orbs:
+  kurtosis-docs-checker: kurtosis-tech/docs-checker@0.2.3
+
+executors:
+  ubuntu_vm:
+    machine:
+      image: ubuntu-2004:202201-02
+
+jobs:
+  run_starlark:
+    executor: ubuntu_vm
+    steps:
+
+      # Set up Kurtosis
+      - run: |
+          echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
+          sudo apt update
+          sudo apt install kurtosis-cli
+      - checkout
+
+      # We don't send metrics to avoid polluting our logs
+      - run: kurtosis analytics disable
+
+      - run: kurtosis engine restart
+
+      - run: |
+          kurtosis run ${PWD} '{"num_task_managers": 2}'
+  
+workflows:
+  build:
+    jobs:
+      # -- PR check jobs ------------------------------------------
+      - run_starlark:
+          filters:
+            branches:
+              ignore:
+                - main
