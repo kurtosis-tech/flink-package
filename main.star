@@ -21,7 +21,7 @@ def run(plan, args):
     if num_task_managers == 0:
         fail("Provide at least 1 task manager to run the Flink cluster, got 0")
 
-    plan.print("""Starting Flink cluster with %d task managers""" % num_task_managers)
+    plan.print("Starting Flink cluster with %d task managers" % num_task_managers)
 
     JOB_MANAGER_PROPERTIES = \
         '''jobmanager.memory.heap.size: %s
