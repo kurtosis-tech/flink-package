@@ -1,7 +1,7 @@
 FLINK_IMAGE = "flink:1.17.0-scala_2.12-java11"
 DEFAULT_NUMBER_OF_TASK_MANAGERS = 2
 NUM_TASK_MANAGERS_ARG_NAME = "num_task_managers"
-FLINK_NODE_PREFIX = "flink-task-manager-"
+FLINK_NODE_PREFIX = "task-manager-"
 
 FLINK_WEB_UI_SERVER_PORT_NUMBER = 8081
 FLINK_GRPC_SERVER_PORT_NUMBER = 6123
@@ -56,7 +56,7 @@ jobmanager.rpc.address: %s''' % (FLINK_JOB_MANAGER_HEAP_SIZE, FLINK_JOB_MANAGER_
         },
         files=flink_lib_jars_extra,
     )
-    job_manager_service = plan.add_service(name="flink-%s" % FLINK_JOB_MANAGER_HOSTNAME, config=job_manager_config)
+    job_manager_service = plan.add_service(name=FLINK_JOB_MANAGER_HOSTNAME, config=job_manager_config)
     plan.print("Assigned job manager hostname: " + str(job_manager_service.hostname))
 
     FLINK_TASK_MANAGER_PROPERTIES = \
