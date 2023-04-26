@@ -7,6 +7,7 @@ FLINK_WEB_UI_SERVER_PORT_NUMBER = 8081
 FLINK_GRPC_SERVER_PORT_NUMBER = 6123
 FLINK_BLOB_SERVER_PORT_NUMBER = 6124
 FLINK_QUERY_SERVER_PORT_NUMBER = 6125
+FLINK_QUERY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE = None
 
 FLINK_JOB_MANAGER_HEAP_SIZE = "1024M"
 FLINK_JOB_MANAGER_HOSTNAME = "jobmanager"
@@ -46,6 +47,7 @@ jobmanager.rpc.address: %s''' % (FLINK_JOB_MANAGER_HEAP_SIZE, FLINK_JOB_MANAGER_
             "query-server": PortSpec(
                 number=FLINK_QUERY_SERVER_PORT_NUMBER,
                 transport_protocol="TCP",
+                wait = FLINK_QUEREY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE,
             ),
         },
         cmd=[
