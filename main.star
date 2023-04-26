@@ -34,15 +34,18 @@ jobmanager.rpc.address: %s''' % (FLINK_JOB_MANAGER_HEAP_SIZE, FLINK_JOB_MANAGER_
                 number=FLINK_WEB_UI_SERVER_PORT_NUMBER,
                 transport_protocol="TCP",
                 application_protocol="http",
+                wait = FLINK_QUERY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE,
             ),
             "grpc-server": PortSpec(
                 number=FLINK_GRPC_SERVER_PORT_NUMBER,
                 transport_protocol="TCP",
                 application_protocol="grpc",
+                wait = FLINK_QUERY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE,
             ),
             "blob-server": PortSpec(
                 number=FLINK_BLOB_SERVER_PORT_NUMBER,
                 transport_protocol="TCP",
+                wait = FLINK_QUERY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE,
             ),
             "query-server": PortSpec(
                 number=FLINK_QUERY_SERVER_PORT_NUMBER,
