@@ -47,7 +47,7 @@ jobmanager.rpc.address: %s''' % (FLINK_JOB_MANAGER_HEAP_SIZE, FLINK_JOB_MANAGER_
             "query-server": PortSpec(
                 number=FLINK_QUERY_SERVER_PORT_NUMBER,
                 transport_protocol="TCP",
-                wait = FLINK_QUEREY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE,
+                wait = FLINK_QUERY_SERVER_PORT_AUTOMATIC_WAIT_DISABLE,
             ),
         },
         cmd=[
